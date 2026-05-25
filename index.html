@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe y Proyección Financiera - Asociación Favara</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white py-6 px-6 shadow-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <div class="flex items-center gap-2">
+                    <span
+                        class="bg-amber-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Planificación
+                        Familiar</span>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight mt-1">Informe de Proyección Financiera: FAVARA</h1>
+                <p class="text-slate-400 text-sm mt-0.5">Turbaco, Bolívar • Sucesión y Acuerdo de Pago (Límite 6 Meses)
+                </p>
+            </div>
+            <div class="flex items-center gap-4 text-right">
+                <div>
+                    <span class="text-xs text-slate-400 block uppercase font-semibold">Representante Legal</span>
+                    <span class="text-sm font-medium text-emerald-400">Rafael Vásquez Medrano</span>
+                </div>
+                <div class="h-8 w-px bg-slate-700"></div>
+                <div>
+                    <span class="text-xs text-slate-400 block uppercase font-semibold">Normativa Hacienda</span>
+                    <span class="text-sm font-medium text-amber-400">Acuerdo de Choque (6 Meses)</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+
+        <!-- Alerta de Choque Financiero / Marco Jurídico -->
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-8 rounded-r-xl shadow-sm">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-semibold text-red-800">Restricción de Hacienda (6 Meses) - Sustento Legal
+                        Colombiano</h3>
+                    <div class="mt-2 text-xs text-red-700 space-y-1 leading-relaxed">
+                        <p><strong>¿Por qué solo 6 meses?</strong> De acuerdo con el <strong>Art. 814 del Estatuto
+                                Tributario de Colombia</strong>, para otorgar un plazo mayor a 12 meses (y en Turbaco,
+                            mayor a 6 meses para carteras morosas de larga data), el deudor debe constituir una garantía
+                            real (como una hipoteca). Como el terreno de 2.928 m² aún está a nombre del causante y en
+                            proceso de sucesión, **no se puede constituir ninguna hipoteca**. Por lo tanto, Hacienda
+                            restringe legalmente el acuerdo a un máximo de 6 meses bajo un modelo de facilidad de pago
+                            simplificada.</p>
+                        <p><strong>Consecuencia Directa:</strong> El saldo de <strong>$70,000,000</strong> debe
+                            amortizarse en cuotas mensuales obligatorias de <strong>$11,666,667</strong>. Esto generará
+                            un déficit de caja temporal durante el primer semestre que debe planificarse con urgencia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inputs y Controles Dinámicos -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-8">
+            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+                Parámetros de Simulación de Acuerdo de Choque (Predial Turbaco)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Col 1: Ingresos de El Patio -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Ingreso de El Patio (Para
+                        Favara)</label>
+                    <div class="relative mt-1 rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="text-slate-400 sm:text-sm">$</span>
+                        </div>
+                        <input type="number" id="inputPatio" value="2000000" onchange="calcularSimulacion()"
+                            class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border"
+                            placeholder="2,000,000">
+                    </div>
+                    <span class="text-[10px] text-slate-400 mt-1 block">(Total $5.2M menos $3.2M de la esposa)</span>
+                </div>
+
+                <!-- Col 2: Negociación Impuesto Predial -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Total Predial
+                        Negociado</label>
+                    <div class="relative mt-1 rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="text-slate-400 sm:text-sm">$</span>
+                        </div>
+                        <input type="number" id="inputPredialNegociado" value="100000000"
+                            onchange="calcularSimulacion()"
+                            class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
+                    </div>
+                    <span class="text-[10px] text-slate-400 mt-1 block">Ahorro frente a los $113.2M de
+                        liquidación.</span>
+                </div>
+
+                <!-- Col 3: Anticipo del Acuerdo -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Anticipo Requerido (Cuota
+                        Inicial)</label>
+                    <div class="relative mt-1 rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="text-slate-400 sm:text-sm">$</span>
+                        </div>
+                        <input type="number" id="inputAnticipo" value="30000000" onchange="calcularSimulacion()"
+                            class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
+                    </div>
+                    <span class="text-[10px] text-amber-600 mt-1 block font-medium">Requerido de inmediato por
+                        Hacienda.</span>
+                </div>
+
+                <!-- Col 4: Plazo Máximo de Hacienda -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Plazo del Acuerdo
+                        (Meses)</label>
+                    <select id="inputMesesAcuerdo" onchange="calcularSimulacion()"
+                        class="block w-full mt-1 rounded-lg border-slate-300 py-2 px-3 text-sm focus:border-emerald-500 focus:ring-emerald-500 border bg-red-50 text-red-900 font-bold border-red-300">
+                        <option value="6" selected>6 Meses (Límite Legal Sin Garantía)</option>
+                        <option value="5">5 Meses</option>
+                        <option value="4">4 Meses</option>
+                        <option value="3">3 Meses</option>
+                    </select>
+                    <span class="text-[10px] text-red-600 mt-1 block font-medium">Restringido por proceso de Sucesión de
+                        tu papá.</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4 pt-4 border-t border-slate-100">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Alquiler Estimado Nuevo
+                        Local (x4)</label>
+                    <input type="number" id="inputLocal" value="1200000" onchange="calcularSimulacion()"
+                        class="block w-full rounded-lg border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
+                    <span class="text-[10px] text-slate-400 mt-1 block">Renta esperada por cada local de
+                        taller/bodega.</span>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Meses para Activar
+                        Locales</label>
+                    <select id="inputMesesActivacion" onchange="calcularSimulacion()"
+                        class="block w-full rounded-lg border-slate-300 py-2 px-3 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
+                        <option value="3">3 Meses (Rápido)</option>
+                        <option value="6" selected>6 Meses (Mediano Plazo)</option>
+                        <option value="12">12 Meses (Lento)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Capital Inicial Disponible
+                        hoy</label>
+                    <div class="relative rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="text-slate-400 sm:text-sm">$</span>
+                        </div>
+                        <input type="number" id="inputCapitalInicial" value="30000000" onchange="calcularSimulacion()"
+                            class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
+                    </div>
+                    <span class="text-[10px] text-slate-400 mt-1 block">Fondo líquido disponible para el
+                        anticipo.</span>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <button onclick="calcularSimulacion()"
+                        class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded-lg text-xs uppercase tracking-wider transition-colors h-9">
+                        Recalcular Simulación
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumen General de Cifras Clave -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex justify-between items-start">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ingresos Favara (Actual)</p>
+                    <span class="p-1.5 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-semibold">Mensual</span>
+                </div>
+                <p class="text-2xl font-black text-slate-900 mt-2" id="valIngresoActual">$10,160,000</p>
+                <div class="text-[11px] text-slate-500 mt-2 flex flex-col gap-1">
+                    <span>• La Carreta: $5.2M</span>
+                    <span>• El Patio (Neto): $2.0M</span>
+                    <span>• Luis: $1.55M | Ariel: $1.41M</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex justify-between items-start">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Sostenimiento de Mamá</p>
+                    <span class="p-1.5 bg-red-100 text-red-800 rounded-lg text-xs font-semibold">Mensual</span>
+                </div>
+                <p class="text-2xl font-black text-slate-900 mt-2" id="valEgresosActual">$2,221,900</p>
+                <div class="text-[11px] text-slate-500 mt-2 flex flex-col gap-1">
+                    <span>• Salud prepagada y AMI: $285k</span>
+                    <span>• Arriendos de vivienda: $1.14M</span>
+                    <span>• Gastos, belleza y transportes: $794k</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex justify-between items-start">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Excedente Libre Favara</p>
+                    <span class="p-1.5 bg-blue-100 text-blue-800 rounded-lg text-xs font-semibold">Antes de
+                        Deudas</span>
+                </div>
+                <p class="text-2xl font-black text-emerald-600 mt-2" id="valExcedenteActual">$7,638,100</p>
+                <div class="text-[11px] text-slate-500 mt-2">
+                    <p>Caja disponible para pagar deudas y acumular ahorro.</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white p-5 rounded-2xl shadow-sm">
+                <div class="flex justify-between items-start">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Pasivos en Negociación</p>
+                    <span class="p-1.5 bg-red-500 text-white rounded-lg text-[10px] font-bold uppercase">De
+                        Choque</span>
+                </div>
+                <p class="text-2xl font-black text-amber-400 mt-2" id="valPasivoTotal">$193,000,000</p>
+                <div class="text-[11px] text-slate-400 mt-2 flex flex-col gap-1">
+                    <span id="labelAcuerdoPredial">• Acuerdo Predial: $100.0M</span>
+                    <span>• Saldo Casa por Comprar: $93.0M</span>
+                    <span class="text-emerald-400 font-semibold">• Ahorro de $13.2M en predial</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestañas de Navegación -->
+        <div class="flex border-b border-slate-200 mb-6">
+            <button onclick="switchTab('escenarios')" id="tabBtn-escenarios"
+                class="py-3 px-6 text-sm font-bold border-b-2 border-emerald-600 text-emerald-600 focus:outline-none">
+                Análisis de Escenarios
+            </button>
+            <button onclick="switchTab('simulador')" id="tabBtn-simulador"
+                class="py-3 px-6 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none">
+                Simulador de Flujo (5 Años)
+            </button>
+            <button onclick="switchTab('hojaRuta')" id="tabBtn-hojaRuta"
+                class="py-3 px-6 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none">
+                Ruta del Acuerdo y Locales
+            </button>
+        </div>
+
+        <!-- CONTENIDO PESTAÑA 1: ANALISIS DE ESCENARIOS -->
+        <div id="tab-escenarios" class="tab-content block">
+
+            <!-- Estructura de Choque de 6 Meses -->
+            <div class="bg-slate-900 text-white rounded-2xl p-6 mb-8 shadow-md border-l-4 border-amber-500">
+                <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2 mb-4">
+                    <span>📋</span> Estructura Obligatoria de Corto Plazo - Hacienda Turbaco
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border-r border-slate-800 pr-6">
+                        <span class="text-xs text-slate-400 block uppercase font-semibold">1. Pago Inicial
+                            (Anticipo)</span>
+                        <p class="text-2xl font-black text-white mt-1" id="boxAnticipo">$30,000,000</p>
+                        <p class="text-xs text-slate-400 mt-1">Requerido hoy para congelar intereses de mora.</p>
+                    </div>
+                    <div class="border-r border-slate-800 pr-6">
+                        <span class="text-xs text-slate-400 block uppercase font-semibold">2. Saldo Financiado (Máx 6
+                            Meses)</span>
+                        <p class="text-2xl font-black text-white mt-1" id="boxSaldoPendiente">$70,000,000</p>
+                        <p class="text-xs text-slate-400 mt-1" id="boxFinanciacionDesc">Saldado en cuotas mensuales
+                            rápidas.</p>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block uppercase font-semibold">3. Cuota Mensual
+                            Obligatoria</span>
+                        <p class="text-2xl font-black text-red-400 mt-1" id="boxCuotaMensual">$11,666,667</p>
+                        <p class="text-xs text-slate-400 mt-1" id="boxCuotasMesesDesc">Monto alto debido a la
+                            restricción de 6 meses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- ESCENARIO 1 -->
+                <div class="bg-white rounded-2xl border-t-4 border-t-emerald-600 border border-slate-200 shadow-sm p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Escenario
+                                Recomendado</span>
+                            <h3 class="text-xl font-black text-slate-900 mt-1">1. Administración Unificada (FAVARA)</h3>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold">Seguridad
+                            Alta</span>
+                    </div>
+
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                        La Asociación Favara conserva la propiedad total del lote de 2.928 m², unifica la personería
+                        jurídica e ingresos, y absorbe la cuota mensual de choque unificadamente. Tu mamá sigue
+                        recibiendo su sostenimiento blindado.
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Esfuerzo
+                                Unificado para el Acuerdo</h4>
+                            <div class="grid grid-cols-2 gap-4 text-sm mb-2">
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Anticipo del Acuerdo:</span>
+                                    <span class="font-bold text-slate-900" id="esc1Anticipo">$30,000,000</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Financiación Anticipo:</span>
+                                    <span class="font-bold text-emerald-600">Aportes Socios / Caja</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Cuota Mensual del Acuerdo:</span>
+                                    <span class="font-bold text-slate-900 text-red-600"
+                                        id="esc1CuotaPredial">$11,666,667</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Déficit Mensual (Mes 1 al 6):</span>
+                                    <span class="font-bold text-red-600" id="esc1Deficit">-$4,028,567</span>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-red-700 border-t border-red-200 pt-2 mt-2 font-medium">
+                                ⚠️ Brecha Semestral: Favara cuenta con un excedente libre de $7.63M pero la cuota es de
+                                $11.66M. Los hermanos deben inyectar $4.02M/mes colectivamente durante 6 meses para
+                                sostener el acuerdo. En el mes 7, el predial se salda al 100% y Favara vuelve a tener
+                                superávit para comprar la casa.
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-emerald-500 pl-4 py-1">
+                            <h4 class="text-sm font-bold text-slate-800">Ventajas Clave:</h4>
+                            <ul class="text-xs text-slate-600 list-disc ml-4 mt-2 space-y-1">
+                                <li><strong>Protección para tu mamá:</strong> Ella nunca asume un saldo en rojo. Su
+                                    presupuesto mensual de $2.22M está garantizado al 100% por la Asociación de la caja
+                                    general.</li>
+                                <li><strong>Esfuerzo Compartido:</strong> El déficit de $4M/mes se divide
+                                    proporcionalmente entre los tres hermanos (apróx $1.34M mensuales por hermano) lo
+                                    cual es sumamente manejable para salvar el predio.</li>
+                                <li><strong>Rápida Liberación:</strong> En solo 6 meses, el lote de 2.928 m² queda
+                                    completamente a paz y salvo predial, listo para registrar la sucesión y sacar un
+                                    crédito para la casa.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESCENARIO 2 -->
+                <div class="bg-white rounded-2xl border-t-4 border-t-indigo-600 border border-slate-200 shadow-sm p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Escenario de
+                                División</span>
+                            <h3 class="text-xl font-black text-slate-900 mt-1">2. División de Activos y Cargas (50% /
+                                50%)</h3>
+                        </div>
+                        <span class="px-3 py-1 bg-red-50 text-red-700 rounded-full text-xs font-semibold">Riesgo
+                            Extremo</span>
+                    </div>
+
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                        Se liquida la sucesión y se dividen los derechos de propiedad y las cargas en proindiviso: 50%
+                        de las acciones/derechos del lote pasan a tu mamá y el otro 50% se divide entre los tres hijos.
+                        Cada parte asume su mitad de deudas y de ingresos.
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Aportes del
+                                Acuerdo de Choque (50% Cada Lado)</h4>
+
+                            <div class="grid grid-cols-2 gap-4 text-sm pb-3 border-b mb-3">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-700 block">Lado A: Tu Mamá (50%)</span>
+                                    <p class="text-xs text-slate-500 mt-1">
+                                        • Anticipo: <strong id="esc2MamaAnticipo"
+                                            class="text-slate-900">$15,000,000</strong><br>
+                                        • Cuota Mensual: <strong id="esc2MamaCuota"
+                                            class="text-red-600 font-bold">$5,833,333</strong>
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-700 block">Lado B: Los Hijos
+                                        (50%)</span>
+                                    <p class="text-xs text-slate-500 mt-1">
+                                        • Anticipo: <strong id="esc2HijosAnticipo"
+                                            class="text-slate-900">$15,000,000</strong><br>
+                                        • Cuota Mensual: <strong id="esc2HijosCuota"
+                                            class="text-slate-900 font-bold">$5,833,333</strong>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="text-xs text-slate-700">
+                                <span class="font-semibold text-slate-900 block mb-1">Análisis de Caja de Tu Mamá (Mes 1
+                                    al 6):</span>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <span>Su 50% de ingresos actuales:</span> <span
+                                        class="text-right font-medium">$5,080,000</span>
+                                    <span>Menos Sostenimiento:</span> <span
+                                        class="text-right text-red-600">-$2,221,900</span>
+                                    <span>Menos 50% Costo Admin:</span> <span
+                                        class="text-right text-red-600">-$150,000</span>
+                                    <span class="font-bold border-t pt-1">Caja Libre Pre-Cuota:</span> <span
+                                        class="text-right font-bold border-t pt-1 text-slate-900"
+                                        id="esc2MamaPreCuota">$2,708,100</span>
+                                    <span class="font-bold text-red-600">Menos Cuota del Acuerdo (50%):</span> <span
+                                        class="text-right font-bold text-red-600">-$5,833,333</span>
+                                    <span class="font-black border-t-2 border-slate-900 pt-1 text-red-600">Caja Neto
+                                        Final:</span> <span
+                                        class="text-right font-black border-t-2 border-slate-900 pt-1 text-red-600"
+                                        id="esc2MamaNetoFinal">-$3,125,233</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-red-500 pl-4 py-1 bg-red-50/50">
+                            <h4 class="text-sm font-bold text-red-700">Riesgos de Ruina para tu Mamá:</h4>
+                            <ul class="text-xs text-red-600 list-disc ml-4 mt-2 space-y-1">
+                                <li><strong>Déficit Semestral de -$18.7M para ella:</strong> Durante los 6 meses del
+                                    acuerdo de pago, tu mamá acumulará un déficit acumulado de **-$18.751.398**. Ella
+                                    tendría que pedir prestado ese dinero obligatoriamente para no incurrir en mora.
+                                </li>
+                                <li><strong>Imposibilidad de Sostenerse Sola:</strong> Este escenario demuestra que bajo
+                                    la división del 50%, tu mamá queda financieramente expuesta ante Hacienda, perdiendo
+                                    toda tranquilidad emocional y económica durante el semestre del acuerdo de pago.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÑA 2: SIMULADOR DE FLUJO (5 AÑOS) -->
+        <div id="tab-simulador" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Parámetros Rápidos del Simulador -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm h-fit">
+                    <h3 class="text-base font-bold text-slate-900 mb-4">Estado del Flujo de Deuda</h3>
+
+                    <div class="space-y-4 text-sm">
+                        <div class="p-3 bg-slate-50 rounded-xl">
+                            <span class="text-xs text-slate-500 block">Deuda Predial Negociada:</span>
+                            <span class="text-lg font-bold text-slate-900" id="simDeudaPredial">$100,000,000</span>
+                        </div>
+                        <div class="p-3 bg-amber-50 rounded-xl">
+                            <span class="text-xs text-amber-700 block">Anticipo Pago Inmediato:</span>
+                            <span class="text-lg font-bold text-amber-800" id="simAnticipo">$30,000,000</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl">
+                            <span class="text-xs text-slate-500 block">Saldo a Cuotas Pendiente:</span>
+                            <span class="text-lg font-bold text-slate-900" id="simSaldoPendiente">$70,000,000</span>
+                        </div>
+                        <div class="p-3 bg-red-100/50 rounded-xl">
+                            <span class="text-xs text-red-700 block">Cuota Mensual (6 Meses):</span>
+                            <span class="text-lg font-bold text-red-800" id="simCuota">$11,666,667</span>
+                        </div>
+
+                        <div class="p-3 bg-emerald-50 rounded-xl">
+                            <span class="text-xs text-emerald-700 block">Potencial de Ingresos (con Locales
+                                Nuevos):</span>
+                            <span class="text-base font-bold text-emerald-800" id="valTotalPotencial">$14,960,000</span>
+                            <span class="text-[10px] text-emerald-600 block mt-1">(Rentas + 4 locales de
+                                taller/bodega)</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button onclick="calcularSimulacion()"
+                            class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors">
+                            Recalcular Gráfica
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gráfica de Proyección -->
+                <div class="lg:col-span-2 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Evolución de Caja Libre Familiar (Proyección
+                                5 Años)</h3>
+                            <p class="text-xs text-slate-400 mt-1">Nótese la fuerte caída inicial debido a la cuota
+                                obligatoria de choque de $11.6M/mes impuesta por Hacienda para el predial durante el
+                                primer semestre, seguida de la inmensa recuperación al saldar la deuda y activar los
+                                locales.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative h-96 w-full">
+                        <canvas id="projectionChart"></canvas>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-slate-50 rounded-xl text-xs text-slate-500">
+                        <p><strong>Explicación del gráfico:</strong> El Escenario 1 (FAVARA, línea verde) muestra que el
+                            fondo unificado asume el choque inicial de $30M y los 6 meses de cuota pesada. Aunque la
+                            caja acumulada familiar se reduce temporalmente, la Asociación no entra en default y se
+                            recupera con fuerza. El Escenario 2 (línea naranja) ilustra el profundo saldo en rojo con el
+                            que tu mamá cargaría individualmente si asume el 50% de las obligaciones.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÑA 3: HOJA DE RUTA LEGAL Y LOCALES -->
+        <div id="tab-hojaRuta" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Plan de Choque con los Locales (William Ramos, Dalmiro y Chatarras) -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="p-1 bg-emerald-100 text-emerald-800 rounded-lg">⚙️</span>
+                        Plan de Recuperación y Explotación de los 4 Locales
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                        Con un compromiso de pago predial de $11.66 millones mensuales, la recuperación y renta de los 4
+                        locales que hoy están prestados se vuelve una prioridad absoluta e indispensable para la
+                        familia.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span
+                                class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Local
+                                1 & 2 (William Ramos - Taller)</span>
+                            <h4 class="text-sm font-bold text-slate-800 mt-2">Formalizar Arriendo Solidario o Plazo de
+                                Entrega</h4>
+                            <p class="text-xs text-slate-500 mt-1">Como es hermano de tu mamá, desalojarlo puede generar
+                                tensiones familiares. La estrategia es fijar un canon preferencial simbólico temporal
+                                (ej. 50% de valor comercial) bajo contrato escrito firmado con la Asociación Favara, con
+                                fecha límite de entrega para arrendar comercialmente.</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span
+                                class="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Local
+                                3 (Dalmiro - Taller)</span>
+                            <h4 class="text-sm font-bold text-slate-800 mt-2">Planteamiento de Arriendo Comercial Formal
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-1">Al ser amigo y no familia directa, se le debe
+                                explicar formalmente que para el sostenimiento de tu mamá y para cumplir el acuerdo
+                                tributario de Turbaco, el local debe entrar en operación comercial rentable. Se le puede
+                                ofrecer la opción preferencial de arriendo con contrato legal a valor de mercado, o
+                                solicitar la entrega pacífica en un plazo de 60 días.</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span
+                                class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Local
+                                4 (Chatarras y Desuso)</span>
+                            <h4 class="text-sm font-bold text-slate-800 mt-2">Inventario, Desocupación y Venta de
+                                Chatarra</h4>
+                            <p class="text-xs text-slate-500 mt-1">Vender la chatarra acumulada inmediatamente. Usar ese
+                                dinero directo para pintar y habilitar el local con el fin de arrendarlo en el mercado
+                                abierto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan de Choque Legal y Predial -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="p-1 bg-indigo-100 text-indigo-800 rounded-lg">⚖️</span>
+                        Ruta Legal Obligatoria: Sucesión, Acuerdo de Pago y Casa
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                        Para poder normalizar la propiedad y garantizar la tranquilidad de tu mamá, los tres frentes
+                        deben atacarse coordinadamente en los próximos 90 días:
+                    </p>
+
+                    <div class="relative border-l border-slate-200 ml-3 pl-6 space-y-6 text-sm">
+                        <!-- Paso 1 -->
+                        <div class="relative">
+                            <span
+                                class="absolute -left-[31px] top-0.5 bg-slate-900 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                            <h4 class="font-bold text-slate-900">Inicio Trámite de Sucesión Notarial de Mutuo Acuerdo
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-1">Como todos los hermanos y tu mamá están de acuerdo,
+                                se debe iniciar la sucesión por notaría en Turbaco o Cartagena para obtener el estatus
+                                de copropietarios legalmente reconocidos y tener capacidad de apalancamiento ante el
+                                sistema financiero colombiano.</p>
+                        </div>
+
+                        <!-- Paso 2 -->
+                        <div class="relative">
+                            <span
+                                class="absolute -left-[31px] top-0.5 bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                            <h4 class="font-bold text-slate-900">Radicación de Acuerdo de Choque (Hacienda de Turbaco)
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-1">Rafael Vásquez (representante legal) radica la
+                                solicitud del acuerdo por un valor de $100M neto, se desembolsan los $30M de anticipo
+                                inmediatamente y se suscribe el pagaré/acuerdo simplificado a 6 meses. Esto suspende de
+                                inmediato cualquier proceso de remate o cobro coactivo.</p>
+                        </div>
+
+                        <!-- Paso 3 -->
+                        <div class="relative">
+                            <span
+                                class="absolute -left-[31px] top-0.5 bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                            <h4 class="font-bold text-slate-900">Firma de Otro Sí para salvar los $47M</h4>
+                            <p class="text-xs text-slate-500 mt-1">Se firma un <em>Otro Sí</em> con el vendedor de la
+                                casa justificando el fallecimiento del causante y el inicio de la sucesión. Se programa
+                                el pago del saldo de los $93M para una fecha posterior a la finalización de las cuotas
+                                del predial (a partir del mes 7), salvaguardando el dinero del anticipo.</p>
+                        </div>
+
+                        <!-- Paso 4 -->
+                        <div class="relative">
+                            <span
+                                class="absolute -left-[31px] top-0.5 bg-amber-500 text-slate-950 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">4</span>
+                            <h4 class="font-bold text-slate-900">Apalancamiento de los $93M de la Casa (Mes 7 en
+                                Adelante)</h4>
+                            <p class="text-xs text-slate-500 mt-1">Una vez saldada la deuda del predial de choque en el
+                                mes 6, con el paz y salvo predial total registrado y la sucesión finalizada, los bancos
+                                aceptarán constituir una hipoteca. Se toma un crédito a largo plazo con cuotas moderadas
+                                financiadas directamente desde el excedente unificado de Favara.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Asociación Favara. Diseñado para el análisis financiero y legal de la Sucesión Vásquez Medrano.
+            </p>
+            <p class="mt-1 text-slate-600">Este informe es una proyección y debe ser validado con el contador y el
+                abogado antes de cualquier firma oficial.</p>
+        </div>
+    </footer>
+
+    <!-- Script de Configuración de la Gráfica y Cálculos -->
+    <script>
+        let myChart;
+
+        // Variables fijas del negocio de arriendos
+        let LaCarreta = 5200000;
+        let LuisAutopartes = 1550000;
+        let ArielMofles = 1410000;
+        let SostenimientoMama = 2221900;
+        let GastoMantenimientoContador = 300000;
+        let DeudaCasa = 93000000;
+
+        function formatCOP(value) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                maximumFractionDigits: 0
+            }).format(value);
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+
+            const selectedTab = document.getElementById('tab-' + tabId);
+            selectedTab.classList.remove('hidden');
+            selectedTab.classList.add('block');
+
+            document.querySelectorAll('[id^="tabBtn-"]').forEach(btn => {
+                btn.classList.remove('border-emerald-600', 'text-emerald-600');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
+
+            document.getElementById('tabBtn-' + tabId).classList.remove('border-transparent', 'text-slate-500');
+            document.getElementById('tabBtn-' + tabId).classList.add('border-emerald-600', 'text-emerald-600');
+
+            if (tabId === 'simulador') {
+                calcularSimulacion();
+            }
+        }
+
+        function calcularSimulacion() {
+            // Inputs dinámicos
+            const PatioNeto = parseFloat(document.getElementById('inputPatio').value) || 2000000;
+            const PredialNegociado = parseFloat(document.getElementById('inputPredialNegociado').value) || 100000000;
+            const AnticipoAcuerdo = parseFloat(document.getElementById('inputAnticipo').value) || 30000000;
+            const MesesAcuerdo = parseInt(document.getElementById('inputMesesAcuerdo').value) || 6;
+            const MathCalculatedLocal = parseFloat(document.getElementById('inputLocal').value);
+            const IngresoNuevoLocal = isNaN(MathCalculatedLocal) ? 1200000 : MathCalculatedLocal;
+            const MesesActivacion = parseInt(document.getElementById('inputMesesActivacion').value) || 6;
+            const CapitalInicialAportes = parseFloat(document.getElementById('inputCapitalInicial').value) || 30000000;
+
+            const SaldoPendienteAcuerdo = PredialNegociado - AnticipoAcuerdo;
+            const CuotaAcuerdoPredial = SaldoPendienteAcuerdo / MesesAcuerdo;
+
+            // Actualizar labels dinámicos en pantalla
+            document.getElementById('labelCuotasMeses').innerText = `Saldo de $${formatCOP(SaldoPendienteAcuerdo)} saldado en exactamente ${MesesAcuerdo} meses.`;
+            document.getElementById('labelAcuerdoPredial').innerText = `• Acuerdo Predial: ${formatCOP(PredialNegociado)}`;
+            document.getElementById('boxAnticipo').innerText = formatCOP(AnticipoAcuerdo);
+            document.getElementById('boxSaldoPendiente').innerText = formatCOP(SaldoPendienteAcuerdo);
+            document.getElementById('boxCuotaMensual').innerText = formatCOP(CuotaAcuerdoPredial);
+            document.getElementById('boxFinanciacionDesc').innerText = `Saldado en cuotas mensuales de ${formatCOP(CuotaAcuerdoPredial)}.`;
+            document.getElementById('boxCuotasMesesDesc').innerText = `Equivale a cuotas obligatorias por ${MesesAcuerdo} meses.`;
+
+            // KPIs Resumen
+            const totalIngresoFavara = LaCarreta + PatioNeto + LuisAutopartes + ArielMofles;
+            const totalEgresosActual = SostenimientoMama + GastoMantenimientoContador;
+            const excedenteActual = totalIngresoFavara - totalEgresosActual;
+            const pasivoTotalSimulado = PredialNegociado + DeudaCasa;
+
+            document.getElementById('valIngresoActual').innerText = formatCOP(totalIngresoFavara);
+            document.getElementById('valEgresosActual').innerText = formatCOP(totalEgresosActual);
+            document.getElementById('valExcedenteActual').innerText = formatCOP(excedenteActual);
+            document.getElementById('valPasivoTotal').innerText = formatCOP(pasivoTotalSimulado);
+
+            // Escenario 1
+            document.getElementById('esc1Anticipo').innerText = formatCOP(AnticipoAcuerdo);
+            document.getElementById('esc1CuotaPredial').innerText = formatCOP(CuotaAcuerdoPredial);
+            const deficitSemestralFavara = excedenteActual - CuotaAcuerdoPredial;
+            document.getElementById('esc1Deficit').innerText = formatCOP(deficitSemestralFavara);
+
+            // Escenario 2 - Desglose Mamá (50%)
+            const esc2MamaAnticipoVal = AnticipoAcuerdo * 0.5;
+            const esc2MamaCuotaVal = CuotaAcuerdoPredial * 0.5;
+            const esc2MamaIngresoVal = totalIngresoFavara * 0.5;
+            const esc2MamaPreCuotaVal = esc2MamaIngresoVal - SostenimientoMama - 150000;
+            const esc2MamaNetoFinalVal = esc2MamaPreCuotaVal - esc2MamaCuotaVal;
+
+            document.getElementById('esc2MamaAnticipo').innerText = formatCOP(esc2MamaAnticipoVal);
+            document.getElementById('esc2MamaCuota').innerText = formatCOP(esc2MamaCuotaVal);
+            document.getElementById('esc2MamaPreCuota').innerText = formatCOP(esc2MamaPreCuotaVal);
+            document.getElementById('esc2MamaNetoFinal').innerText = formatCOP(esc2MamaNetoFinalVal);
+
+            // Escenario 2 - Desglose Hijos (50%)
+            document.getElementById('esc2HijosAnticipo').innerText = formatCOP(AnticipoAcuerdo * 0.5);
+            document.getElementById('esc2HijosCuota').innerText = formatCOP(CuotaAcuerdoPredial * 0.5);
+
+            // Tab 2 KPIs
+            document.getElementById('simDeudaPredial').innerText = formatCOP(PredialNegociado);
+            document.getElementById('simAnticipo').innerText = formatCOP(AnticipoAcuerdo);
+            document.getElementById('simSaldoPendiente').innerText = formatCOP(SaldoPendienteAcuerdo);
+            document.getElementById('simCuota').innerText = formatCOP(CuotaAcuerdoPredial);
+            document.getElementById('valTotalPotencial').innerText = formatCOP(totalIngresoFavara + (IngresoNuevoLocal * 4));
+
+            // Proyecciones de caja acumulada a 60 meses
+            let labels = [];
+            let dataEsc1 = [];
+            let dataEsc2Mama = [];
+            let dataEsc2Hijos = [];
+
+            // Inicialización de simulación
+            let saldoDeudaPredial1 = SaldoPendienteAcuerdo;
+            let saldoDeudaCasa1 = DeudaCasa;
+            let cajaAcumuladaEsc1 = CapitalInicialAportes - AnticipoAcuerdo;
+
+            let saldoDeudaPredial2Mama = SaldoPendienteAcuerdo * 0.5;
+            let saldoDeudaCasa2Mama = DeudaCasa * 0.5;
+            let cajaAcumuladaEsc2Mama = (CapitalInicialAportes * 0.5) - (AnticipoAcuerdo * 0.5);
+
+            let saldoDeudaPredial2Hijos = SaldoPendienteAcuerdo * 0.5;
+            let saldoDeudaCasa2Hijos = DeudaCasa * 0.5;
+            let cajaAcumuladaEsc2Hijos = (CapitalInicialAportes * 0.5) - (AnticipoAcuerdo * 0.5);
+
+            for (let mes = 1; mes <= 60; mes++) {
+                if (mes % 12 === 0 || mes === 1 || mes === 60) {
+                    labels.push("Mes " + mes);
+                } else {
+                    labels.push("");
+                }
+
+                // --- PROYECCIÓN ESCENARIO 1 (ASOCIACIÓN FAVARA) ---
+                let ingresoLocalesEsteMes1 = 0;
+                if (mes >= MesesActivacion) {
+                    ingresoLocalesEsteMes1 = IngresoNuevoLocal * 4;
+                }
+                let ingresoTotalFavara1 = totalIngresoFavara + ingresoLocalesEsteMes1;
+                let cajaDisponibleFavara1 = ingresoTotalFavara1 - SostenimientoMama - GastoMantenimientoContador;
+
+                // Amortización Predial
+                let abonoPredial1 = 0;
+                if (mes <= MesesAcuerdo) {
+                    abonoPredial1 = Math.min(CuotaAcuerdoPredial, saldoDeudaPredial1);
+                    saldoDeudaPredial1 -= abonoPredial1;
+                }
+
+                // Amortización de la Casa (Solo se amortiza el saldo una vez el predial se pague del todo en el mes 6)
+                let abonoCasa1 = 0;
+                if (mes > MesesAcuerdo) {
+                    let excedenteParaCasa1 = cajaDisponibleFavara1 - abonoPredial1;
+                    abonoCasa1 = Math.min(excedenteParaCasa1, saldoDeudaCasa1);
+                    saldoDeudaCasa1 -= abonoCasa1;
+                }
+
+                let remanenteFinalMes1 = (cajaDisponibleFavara1 - abonoPredial1) - abonoCasa1;
+                cajaAcumuladaEsc1 += remanenteFinalMes1;
+                dataEsc1.push(cajaAcumuladaEsc1);
+
+
+                // --- PROYECCIÓN ESCENARIO 2 (MAMÁ 50%) ---
+                let ingresoLocalesEsteMes2Mama = 0;
+                if (mes >= MesesActivacion) {
+                    ingresoLocalesEsteMes2Mama = (IngresoNuevoLocal * 4) * 0.5;
+                }
+                let ingresoTotalMama2 = (totalIngresoFavara * 0.5) + ingresoLocalesEsteMes2Mama;
+                let cajaDisponibleMama2 = ingresoTotalMama2 - SostenimientoMama - 150000;
+
+                // Amortización Predial Mamá (Mes 1 al 6)
+                let abonoPredialMama = 0;
+                if (mes <= MesesAcuerdo) {
+                    abonoPredialMama = Math.min(CuotaAcuerdoPredial * 0.5, saldoDeudaPredial2Mama);
+                    saldoDeudaPredial2Mama -= abonoPredialMama;
+                }
+
+                // Amortización Casa Mamá (Mes 7 en adelante)
+                let abonoCasaMama = 0;
+                if (mes > MesesAcuerdo) {
+                    let excedenteParaCasaMama = cajaDisponibleMama2 - abonoPredialMama;
+                    abonoCasaMama = Math.min(excedenteParaCasaMama, saldoDeudaCasa2Mama);
+                    saldoDeudaCasa2Mama -= abonoCasaMama;
+                }
+
+                let remanenteFinalMesMama = (cajaDisponibleMama2 - abonoPredialMama) - abonoCasaMama;
+                cajaAcumuladaEsc2Mama += remanenteFinalMesMama;
+                dataEsc2Mama.push(cajaAcumuladaEsc2Mama);
+
+
+                // --- PROYECCIÓN ESCENARIO 2 (HIJOS 50%) ---
+                let ingresoLocalesEsteMes2Hijos = 0;
+                if (mes >= MesesActivacion) {
+                    ingresoLocalesEsteMes2Hijos = (IngresoNuevoLocal * 4) * 0.5;
+                }
+                let ingresoTotalHijos2 = (totalIngresoFavara * 0.5) + ingresoLocalesEsteMes2Hijos;
+                let cajaDisponibleHijos2 = ingresoTotalHijos2 - 150000;
+
+                // Amortización Predial Hijos
+                let abonoPredialHijos = 0;
+                if (mes <= MesesAcuerdo) {
+                    abonoPredialHijos = Math.min(CuotaAcuerdoPredial * 0.5, saldoDeudaPredial2Hijos);
+                    saldoDeudaPredial2Hijos -= abonoPredialHijos;
+                }
+
+                // Amortización Casa Hijos
+                let abonoCasaHijos = 0;
+                if (mes > MesesAcuerdo) {
+                    let excedenteParaCasaHijos = cajaDisponibleHijos2 - abonoPredialHijos;
+                    abonoCasaHijos = Math.min(excedenteParaCasaHijos, saldoDeudaCasa2Hijos);
+                    saldoDeudaCasa2Hijos -= abonoCasaHijos;
+                }
+
+                let remanenteFinalMesHijos = (cajaDisponibleHijos2 - abonoPredialHijos) - abonoCasaHijos;
+                cajaAcumuladaEsc2Hijos += remanenteFinalMesHijos;
+                dataEsc2Hijos.push(cajaAcumuladaEsc2Hijos);
+            }
+
+            actualizarGrafica(labels, dataEsc1, dataEsc2Mama, dataEsc2Hijos);
+        }
+
+        function actualizarGrafica(labels, dataEsc1, dataEsc2Mama, dataEsc2Hijos) {
+            const ctx = document.getElementById('projectionChart').getContext('2d');
+
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Escenario 1: Asociación Favara (Fondo Unificado de Choque)',
+                            data: dataEsc1,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.03)',
+                            borderWidth: 3.5,
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Escenario 2: Caja Acumulada de tu Mamá (50%)',
+                            data: dataEsc2Mama,
+                            borderColor: '#f97316',
+                            backgroundColor: 'rgba(249, 115, 22, 0.02)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Escenario 2: Caja Acumulada de los Hijos (50%)',
+                            data: dataEsc2Hijos,
+                            borderColor: '#6366f1',
+                            backgroundColor: 'rgba(99, 102, 241, 0.02)',
+                            borderWidth: 2,
+                            fill: true,
+                            borderDash: [5, 5],
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 11
+                                },
+                                boxWidth: 15
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: function (value) {
+                                    return formatCOP(value);
+                                },
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            grid: {
+                                color: '#f1f5f9'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.onload = function () {
+            calcularSimulacion();
+        }
+    </script>
+</body>
+
+</html>
