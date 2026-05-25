@@ -98,7 +98,7 @@
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <span class="text-slate-400 sm:text-sm">$</span>
                         </div>
-                        <input type="number" id="inputPatio" value="2000000" onchange="calcularSimulacion()"
+                        <input type="number" id="inputPatio" value="2000000" oninput="calcularSimulacion()"
                             class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border"
                             placeholder="2,000,000">
                     </div>
@@ -113,8 +113,7 @@
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <span class="text-slate-400 sm:text-sm">$</span>
                         </div>
-                        <input type="number" id="inputPredialNegociado" value="100000000"
-                            onchange="calcularSimulacion()"
+                        <input type="number" id="inputPredialNegociado" value="100000000" oninput="calcularSimulacion()"
                             class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
                     </div>
                     <span class="text-[10px] text-slate-400 mt-1 block">Ahorro frente a los $113.2M de
@@ -129,7 +128,7 @@
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <span class="text-slate-400 sm:text-sm">$</span>
                         </div>
-                        <input type="number" id="inputAnticipo" value="30000000" onchange="calcularSimulacion()"
+                        <input type="number" id="inputAnticipo" value="30000000" oninput="calcularSimulacion()"
                             class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
                     </div>
                     <span class="text-[10px] text-amber-600 mt-1 block font-medium">Requerido de inmediato por
@@ -152,11 +151,11 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4 pt-4 border-t border-slate-100">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 pt-4 border-t border-slate-100">
                 <div>
                     <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Alquiler Estimado Nuevo
                         Local (x4)</label>
-                    <input type="number" id="inputLocal" value="1200000" onchange="calcularSimulacion()"
+                    <input type="number" id="inputLocal" value="1200000" oninput="calcularSimulacion()"
                         class="block w-full rounded-lg border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
                     <span class="text-[10px] text-slate-400 mt-1 block">Renta esperada por cada local de
                         taller/bodega.</span>
@@ -178,17 +177,11 @@
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <span class="text-slate-400 sm:text-sm">$</span>
                         </div>
-                        <input type="number" id="inputCapitalInicial" value="30000000" onchange="calcularSimulacion()"
+                        <input type="number" id="inputCapitalInicial" value="30000000" oninput="calcularSimulacion()"
                             class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border">
                     </div>
                     <span class="text-[10px] text-slate-400 mt-1 block">Fondo líquido disponible para el
                         anticipo.</span>
-                </div>
-                <div class="flex flex-col justify-end">
-                    <button onclick="calcularSimulacion()"
-                        class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded-lg text-xs uppercase tracking-wider transition-colors h-9">
-                        Recalcular Simulación
-                    </button>
                 </div>
             </div>
         </div>
@@ -249,17 +242,29 @@
         </div>
 
         <!-- Pestañas de Navegación -->
-        <div class="flex border-b border-slate-200 mb-6">
+        <div class="flex border-b border-slate-200 mb-6 gap-1 md:gap-2 scrollbar-none">
             <button onclick="switchTab('escenarios')" id="tabBtn-escenarios"
-                class="py-3 px-6 text-sm font-bold border-b-2 border-emerald-600 text-emerald-600 focus:outline-none">
+                class="flex items-center gap-2 py-3 px-5 text-sm font-bold rounded-t-xl border-x border-t -mb-px relative z-10 bg-white border-slate-200 text-emerald-600 focus:outline-none transition-all duration-200">
+                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 Análisis de Escenarios
             </button>
             <button onclick="switchTab('simulador')" id="tabBtn-simulador"
-                class="py-3 px-6 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none">
+                class="flex items-center gap-2 py-3 px-5 text-sm font-medium rounded-t-xl border-x border-t -mb-px relative z-0 bg-transparent border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-100/50 focus:outline-none transition-all duration-200">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 12l3-3 3 3 4-4M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
                 Simulador de Flujo (5 Años)
             </button>
             <button onclick="switchTab('hojaRuta')" id="tabBtn-hojaRuta"
-                class="py-3 px-6 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none">
+                class="flex items-center gap-2 py-3 px-5 text-sm font-medium rounded-t-xl border-x border-t -mb-px relative z-0 bg-transparent border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-100/50 focus:outline-none transition-all duration-200">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
                 Ruta del Acuerdo y Locales
             </button>
         </div>
@@ -269,9 +274,14 @@
 
             <!-- Estructura de Choque de 6 Meses -->
             <div class="bg-slate-900 text-white rounded-2xl p-6 mb-8 shadow-md border-l-4 border-amber-500">
-                <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2 mb-4">
-                    <span>📋</span> Estructura Obligatoria de Corto Plazo - Hacienda Turbaco
-                </h3>
+                <div
+                    class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4 border-b border-slate-800 pb-4">
+                    <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
+                        <span>📋</span> Estructura Obligatoria de Corto Plazo - Hacienda Turbaco
+                    </h3>
+                    <span id="labelCuotasMeses"
+                        class="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 font-medium"></span>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="border-r border-slate-800 pr-6">
                         <span class="text-xs text-slate-400 block uppercase font-semibold">1. Pago Inicial
@@ -488,12 +498,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-6">
-                        <button onclick="calcularSimulacion()"
-                            class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors">
-                            Recalcular Gráfica
-                        </button>
-                    </div>
+                    <!-- Recálculo automático activo -->
                 </div>
 
                 <!-- Gráfica de Proyección -->
@@ -686,32 +691,55 @@
             selectedTab.classList.remove('hidden');
             selectedTab.classList.add('block');
 
+            // Restablecer todos los botones a su estado inactivo
             document.querySelectorAll('[id^="tabBtn-"]').forEach(btn => {
-                btn.classList.remove('border-emerald-600', 'text-emerald-600');
-                btn.classList.add('border-transparent', 'text-slate-500');
+                btn.classList.remove('bg-white', 'border-slate-200', 'text-emerald-600', 'font-bold', 'z-10');
+                btn.classList.add('bg-transparent', 'border-transparent', 'text-slate-500', 'font-medium', 'z-0');
+
+                const svg = btn.querySelector('svg');
+                if (svg) {
+                    svg.classList.remove('text-emerald-600');
+                    svg.classList.add('text-slate-400');
+                }
             });
 
-            document.getElementById('tabBtn-' + tabId).classList.remove('border-transparent', 'text-slate-500');
-            document.getElementById('tabBtn-' + tabId).classList.add('border-emerald-600', 'text-emerald-600');
+            // Establecer el botón clickeado como activo
+            const activeBtn = document.getElementById('tabBtn-' + tabId);
+            activeBtn.classList.remove('bg-transparent', 'border-transparent', 'text-slate-500', 'font-medium', 'z-0');
+            activeBtn.classList.add('bg-white', 'border-slate-200', 'text-emerald-600', 'font-bold', 'z-10');
+
+            const activeSvg = activeBtn.querySelector('svg');
+            if (activeSvg) {
+                activeSvg.classList.remove('text-slate-400');
+                activeSvg.classList.add('text-emerald-600');
+            }
 
             if (tabId === 'simulador') {
                 calcularSimulacion();
             }
         }
 
+        function getInputValue(id, defaultValue) {
+            const el = document.getElementById(id);
+            if (!el) return defaultValue;
+            const val = el.value;
+            if (val === '') return defaultValue;
+            const parsed = parseFloat(val);
+            return isNaN(parsed) ? defaultValue : parsed;
+        }
+
         function calcularSimulacion() {
             // Inputs dinámicos
-            const PatioNeto = parseFloat(document.getElementById('inputPatio').value) || 2000000;
-            const PredialNegociado = parseFloat(document.getElementById('inputPredialNegociado').value) || 100000000;
-            const AnticipoAcuerdo = parseFloat(document.getElementById('inputAnticipo').value) || 30000000;
+            const PatioNeto = getInputValue('inputPatio', 2000000);
+            const PredialNegociado = getInputValue('inputPredialNegociado', 100000000);
+            const AnticipoAcuerdo = getInputValue('inputAnticipo', 30000000);
             const MesesAcuerdo = parseInt(document.getElementById('inputMesesAcuerdo').value) || 6;
-            const MathCalculatedLocal = parseFloat(document.getElementById('inputLocal').value);
-            const IngresoNuevoLocal = isNaN(MathCalculatedLocal) ? 1200000 : MathCalculatedLocal;
+            const IngresoNuevoLocal = getInputValue('inputLocal', 1200000);
             const MesesActivacion = parseInt(document.getElementById('inputMesesActivacion').value) || 6;
-            const CapitalInicialAportes = parseFloat(document.getElementById('inputCapitalInicial').value) || 30000000;
+            const CapitalInicialAportes = getInputValue('inputCapitalInicial', 30000000);
 
             const SaldoPendienteAcuerdo = PredialNegociado - AnticipoAcuerdo;
-            const CuotaAcuerdoPredial = SaldoPendienteAcuerdo / MesesAcuerdo;
+            const CuotaAcuerdoPredial = MesesAcuerdo > 0 ? (SaldoPendienteAcuerdo / MesesAcuerdo) : 0;
 
             // Actualizar labels dinámicos en pantalla
             document.getElementById('labelCuotasMeses').innerText = `Saldo de $${formatCOP(SaldoPendienteAcuerdo)} saldado en exactamente ${MesesAcuerdo} meses.`;
@@ -807,7 +835,7 @@
                 let abonoCasa1 = 0;
                 if (mes > MesesAcuerdo) {
                     let excedenteParaCasa1 = cajaDisponibleFavara1 - abonoPredial1;
-                    abonoCasa1 = Math.min(excedenteParaCasa1, saldoDeudaCasa1);
+                    abonoCasa1 = Math.max(0, Math.min(excedenteParaCasa1, saldoDeudaCasa1));
                     saldoDeudaCasa1 -= abonoCasa1;
                 }
 
@@ -835,7 +863,7 @@
                 let abonoCasaMama = 0;
                 if (mes > MesesAcuerdo) {
                     let excedenteParaCasaMama = cajaDisponibleMama2 - abonoPredialMama;
-                    abonoCasaMama = Math.min(excedenteParaCasaMama, saldoDeudaCasa2Mama);
+                    abonoCasaMama = Math.max(0, Math.min(excedenteParaCasaMama, saldoDeudaCasa2Mama));
                     saldoDeudaCasa2Mama -= abonoCasaMama;
                 }
 
@@ -863,7 +891,7 @@
                 let abonoCasaHijos = 0;
                 if (mes > MesesAcuerdo) {
                     let excedenteParaCasaHijos = cajaDisponibleHijos2 - abonoPredialHijos;
-                    abonoCasaHijos = Math.min(excedenteParaCasaHijos, saldoDeudaCasa2Hijos);
+                    abonoCasaHijos = Math.max(0, Math.min(excedenteParaCasaHijos, saldoDeudaCasa2Hijos));
                     saldoDeudaCasa2Hijos -= abonoCasaHijos;
                 }
 
@@ -876,11 +904,25 @@
         }
 
         function actualizarGrafica(labels, dataEsc1, dataEsc2Mama, dataEsc2Hijos) {
-            const ctx = document.getElementById('projectionChart').getContext('2d');
+            const canvas = document.getElementById('projectionChart');
+            const ctx = canvas.getContext('2d');
 
             if (myChart) {
                 myChart.destroy();
             }
+
+            // Crear gradientes espectaculares para fondos de la gráfica
+            const gradientEsc1 = ctx.createLinearGradient(0, 0, 0, 300);
+            gradientEsc1.addColorStop(0, 'rgba(16, 185, 129, 0.25)');
+            gradientEsc1.addColorStop(1, 'rgba(16, 185, 129, 0.00)');
+
+            const gradientEsc2Mama = ctx.createLinearGradient(0, 0, 0, 300);
+            gradientEsc2Mama.addColorStop(0, 'rgba(249, 115, 22, 0.15)');
+            gradientEsc2Mama.addColorStop(1, 'rgba(249, 115, 22, 0.00)');
+
+            const gradientEsc2Hijos = ctx.createLinearGradient(0, 0, 0, 300);
+            gradientEsc2Hijos.addColorStop(0, 'rgba(99, 102, 241, 0.15)');
+            gradientEsc2Hijos.addColorStop(1, 'rgba(99, 102, 241, 0.00)');
 
             myChart = new Chart(ctx, {
                 type: 'line',
@@ -891,29 +933,38 @@
                             label: 'Escenario 1: Asociación Favara (Fondo Unificado de Choque)',
                             data: dataEsc1,
                             borderColor: '#10b981',
-                            backgroundColor: 'rgba(16, 185, 129, 0.03)',
+                            backgroundColor: gradientEsc1,
                             borderWidth: 3.5,
                             fill: true,
-                            tension: 0.1
+                            tension: 0.2,
+                            pointRadius: 0,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#10b981'
                         },
                         {
                             label: 'Escenario 2: Caja Acumulada de tu Mamá (50%)',
                             data: dataEsc2Mama,
                             borderColor: '#f97316',
-                            backgroundColor: 'rgba(249, 115, 22, 0.02)',
-                            borderWidth: 2,
+                            backgroundColor: gradientEsc2Mama,
+                            borderWidth: 2.5,
                             fill: true,
-                            tension: 0.1
+                            tension: 0.2,
+                            pointRadius: 0,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#f97316'
                         },
                         {
                             label: 'Escenario 2: Caja Acumulada de los Hijos (50%)',
                             data: dataEsc2Hijos,
                             borderColor: '#6366f1',
-                            backgroundColor: 'rgba(99, 102, 241, 0.02)',
-                            borderWidth: 2,
+                            backgroundColor: gradientEsc2Hijos,
+                            borderWidth: 2.5,
                             fill: true,
                             borderDash: [5, 5],
-                            tension: 0.1
+                            tension: 0.2,
+                            pointRadius: 0,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#6366f1'
                         }
                     ]
                 },
