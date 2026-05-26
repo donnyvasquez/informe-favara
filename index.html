@@ -124,23 +124,8 @@
                 </svg>
                 Parámetros de Simulación de Acuerdo de Choque (Predial Turbaco)
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <!-- Col 1: Ingresos de El Patio -->
-                <div>
-                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Ingreso de El Patio (Para
-                        Favara)</label>
-                    <div class="relative mt-1 rounded-md shadow-sm">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <span class="text-slate-400 sm:text-sm">$</span>
-                        </div>
-                        <input type="number" id="inputPatio" value="2000000" oninput="calcularSimulacion()"
-                            class="block w-full rounded-lg border-slate-300 pl-7 pr-3 py-2 text-sm focus:border-emerald-500 focus:ring-emerald-500 border"
-                            placeholder="2,000,000">
-                    </div>
-                    <span class="text-[10px] text-slate-400 mt-1 block">(Total $5.2M menos $3.2M de la esposa)</span>
-                </div>
-
-                <!-- Col 2: Negociación Impuesto Predial -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Col 1: Negociación Impuesto Predial -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Total Predial
                         Negociado</label>
@@ -155,7 +140,7 @@
                         <strong>$113,233,938</strong>. Simular negociación.</span>
                 </div>
 
-                <!-- Col 3: Anticipo del Acuerdo -->
+                <!-- Col 2: Anticipo del Acuerdo -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Anticipo Requerido (Cuota
                         Inicial)</label>
@@ -170,7 +155,7 @@
                         Hacienda.</span>
                 </div>
 
-                <!-- Col 4: Plazo Máximo de Hacienda -->
+                <!-- Col 3: Plazo Máximo de Hacienda -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Plazo del Acuerdo
                         (Meses)</label>
@@ -231,7 +216,7 @@
                 <p class="text-2xl font-black text-slate-900 mt-2" id="valIngresoActual">$10,160,000</p>
                 <div class="text-[11px] text-slate-500 mt-2 flex flex-col gap-1">
                     <span>• La Carreta: $5.2M</span>
-                    <span>• El Patio (Neto): $2.0M</span>
+                    <span>• El Patio (renta fija neta): $2.0M</span>
                     <span>• Luis: $1.55M | Ariel: $1.41M</span>
                 </div>
             </div>
@@ -755,6 +740,7 @@
 
         // Variables fijas del negocio de arriendos
         let LaCarreta = 5200000;
+        let PatioNeto = 2000000;
         let LuisAutopartes = 1550000;
         let ArielMofles = 1410000;
         let SostenimientoMama = 2221900;
@@ -818,7 +804,6 @@
 
         function calcularSimulacion() {
             // Inputs dinámicos
-            const PatioNeto = getInputValue('inputPatio', 2000000);
             const PredialNegociado = getInputValue('inputPredialNegociado', 113233938);
             const AnticipoAcuerdo = getInputValue('inputAnticipo', 30000000);
             const MesesAcuerdo = parseInt(document.getElementById('inputMesesAcuerdo').value) || 6;
